@@ -54,7 +54,6 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // Custom: eleventy-plugin-local-images
 const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
-const CleanCSS = require("clean-css");
 const GA_ID = require("./_data/metadata.json").googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
@@ -152,14 +151,12 @@ module.exports = function (eleventyConfig) {
     }
   );
 
+  // used mostly in in analytics templates
   eleventyConfig.addFilter("encodeURIComponent", function (str) {
     return encodeURIComponent(str);
   });
 
-  eleventyConfig.addFilter("cssmin", function (code) {
-    return new CleanCSS({}).minify(code).styles;
-  });
-
+  // a sane date format - f.e. 01 Jan 2021
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
       "dd LLL yyyy"
