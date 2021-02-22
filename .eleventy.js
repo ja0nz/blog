@@ -52,15 +52,32 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
-const localImages = require("eleventy-plugin-local-images");
+// Custom: eleventy-plugin-local-images
+const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
 const CleanCSS = require("clean-css");
 const GA_ID = require("./_data/metadata.json").googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
+
+  /**
+   * 11ty defaults
+   */
+  eleventyConfig.setDataDeepMerge(true);
+
+  /**
+   * External Plugins
+   */
+  // RSS feed -> Template: feed/feed.html
+  // https://www.11ty.dev/docs/plugins/rss/
   eleventyConfig.addPlugin(pluginRss);
+  // PrismJS syntax highlighting
+  // https://www.11ty.dev/docs/plugins/syntaxhighlight/
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
+  // Navigation and Breadcrumbs
+  // https://www.11ty.dev/docs/plugins/navigation/
   eleventyConfig.addPlugin(pluginNavigation);
 
+  // Caching third party images locally
   eleventyConfig.addPlugin(localImages, {
     distPath: "_site",
     assetPath: "/img/remote",
@@ -69,11 +86,19 @@ module.exports = function (eleventyConfig) {
     verbose: false,
   });
 
+  /**
+   * Internal Plugins
+   */
+  // Create and insert a image srcset on each image
   eleventyConfig.addPlugin(require("./_11ty/img-dim.js"));
+  // JSON linked data parser (used in each post to add schema)
   eleventyConfig.addPlugin(require("./_11ty/json-ld.js"));
+  // HTML + CSS minification and optimization
   eleventyConfig.addPlugin(require("./_11ty/optimize-html.js"));
+  // csp-hash; in development too; can be a bit hacky with hot reloading
   eleventyConfig.addPlugin(require("./_11ty/apply-csp.js"));
-  eleventyConfig.setDataDeepMerge(true);
+
+  // https://www.11ty.dev/docs/layouts/#layout-aliasing
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
   eleventyConfig.addNunjucksAsyncFilter(
     "addHash",
