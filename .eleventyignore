@@ -5,7 +5,8 @@ _site/
 node_modules/
 package-lock.json
 README.md
-_11ty/
+_11ty-plugins/
+_11ty-collection/
 third_party
 functions
 test

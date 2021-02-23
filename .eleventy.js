@@ -57,7 +57,6 @@ const localImages = require("./third_party/eleventy-plugin-local-images/.elevent
 const GA_ID = require("./_data/metadata.json").googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
-
   /**
    * 11ty defaults
    */
@@ -89,13 +88,13 @@ module.exports = function (eleventyConfig) {
    * Internal Plugins
    */
   // Create and insert a image srcset on each image
-  eleventyConfig.addPlugin(require("./_11ty/img-dim.js"));
+  eleventyConfig.addPlugin(require("./_11ty-plugins/img-dim.js"));
   // JSON linked data parser (used in each post to add schema)
-  eleventyConfig.addPlugin(require("./_11ty/json-ld.js"));
+  eleventyConfig.addPlugin(require("./_11ty-plugins/json-ld.js"));
   // HTML + CSS minification and optimization
-  eleventyConfig.addPlugin(require("./_11ty/optimize-html.js"));
+  eleventyConfig.addPlugin(require("./_11ty-plugins/optimize-html.js"));
   // csp-hash; in development too; can be a bit hacky with hot reloading
-  eleventyConfig.addPlugin(require("./_11ty/apply-csp.js"));
+  eleventyConfig.addPlugin(require("./_11ty-plugins/apply-csp.js"));
 
   // https://www.11ty.dev/docs/layouts/#layout-aliasing
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
@@ -185,7 +184,10 @@ module.exports = function (eleventyConfig) {
     return array.slice(0, n);
   });
 
-  eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
+  eleventyConfig.addCollection(
+    "tagList",
+    require("./_11ty-collection/getTagList")
+  );
 
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
