@@ -1,4 +1,4 @@
-_site/
+_build_/
 node_modules/
 .DS_Store
 js/min.js
