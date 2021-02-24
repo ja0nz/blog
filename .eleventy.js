@@ -43,6 +43,7 @@
 const { DateTime } = require("luxon");
 const { promisify } = require("util");
 const fs = require("fs");
+const path = require("path");
 const hasha = require("hasha");
 const readFile = promisify(fs.readFile);
 const stat = promisify(fs.stat);
@@ -54,7 +55,8 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // Custom: eleventy-plugin-local-images
 const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
-const GA_ID = require(process.env._DATA + "/metadata.json").googleAnalyticsId;
+const GA_ID = require(path.join(process.env._DATA, "metadata.json"))
+  .googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
   /**
@@ -77,7 +79,7 @@ module.exports = function (eleventyConfig) {
 
   // Caching third party images locally
   eleventyConfig.addPlugin(localImages, {
-    distPath: "_build_",
+    distPath: process.env._OUTPUT,
     assetPath: "/img/remote",
     selector:
       "img,amp-img,amp-video,meta[property='og:image'],meta[name='twitter:image'],amp-story",
@@ -101,7 +103,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addNunjucksAsyncFilter(
     "addHash",
     function (absolutePath, callback) {
-      readFile(`_build_${absolutePath}`, {
+      readFile(path.join(process.env._OUTPUT, absolutePath), {
         encoding: "utf-8",
       })
         .then((content) => {
@@ -194,7 +196,7 @@ module.exports = function (eleventyConfig) {
   // We need to copy cached.js only if GA is used
   eleventyConfig.addPassthroughCopy(GA_ID ? "js" : "js/*[!cached].*");
   eleventyConfig.addPassthroughCopy("fonts");
-  eleventyConfig.addPassthroughCopy(process.env._INPUT + "/_headers");
+  eleventyConfig.addPassthroughCopy(path.join(process.env._INPUT, "_headers"));
 
   // We need to rebuild upon JS change to update the CSP.
   eleventyConfig.addWatchTarget("./js/");
@@ -220,7 +222,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: function (err, browserSync) {
-        const content_404 = fs.readFileSync("_build_/404.html");
+        const content_404 = fs.readFileSync(
+          path.join(process.env._OUTPUT, "404.html")
+        );
 
         browserSync.addMiddleware("*", (req, res) => {
           // Provides the 404 content without redirect.
@@ -252,10 +256,10 @@ module.exports = function (eleventyConfig) {
 
     // These are all optional, defaults are shown:
     dir: {
-      input: "_11ty",
-      includes: "_includes",
-      data: "_data",
-      output: "_build_",
+      input: path.basename(process.env._INPUT),
+      includes: path.basename(process.env._INCLUDES),
+      data: path.basename(process.env._DATA),
+      output: process.env._OUTPUT,
     },
   };
 };

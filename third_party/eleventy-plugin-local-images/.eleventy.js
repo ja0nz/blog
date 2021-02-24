@@ -4,9 +4,13 @@ const { JSDOM } = require("jsdom");
 const fetch = require("node-fetch");
 const sh = require("shorthash");
 const fileType = require("file-type");
-const metadata = require(process.env._DATA + "/metadata.json");
+const metadata = require(path.join(process.env._DATA, "metadata.json"));
 
-let config = { distPath: "_build_", verbose: false, attribute: "src" };
+let config = {
+  distPath: process.env._OUTPUT,
+  verbose: false,
+  attribute: "src",
+};
 
 const downloadImage = async (path) => {
   if (config.verbose) {

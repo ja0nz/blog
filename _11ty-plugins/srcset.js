@@ -20,6 +20,7 @@
  */
 
 const { promisify } = require("util");
+const path = require("path");
 const exists = promisify(require("fs").exists);
 const sharp = require("sharp");
 
@@ -49,17 +50,17 @@ module.exports = async function srcset(filename, format) {
 
 async function resize(filename, width, format) {
   const out = sizedName(filename, width, format);
-  if (await exists("_build_" + out)) {
+  if (await exists(path.join(process.env._OUTPUT, out))) {
     return out;
   }
-  await sharp("_build_" + filename)
+  await sharp(path.join(process.env._OUTPUT, filename))
     .rotate() // Manifest rotation from metadata
     .resize(width)
     [format]({
       quality: quality[format] || quality.default,
       reductionEffort: 6,
     })
-    .toFile("_build_" + out);
+    .toFile(path.join(process.env._OUTPUT, out));
 
   return out;
 }

@@ -42,14 +42,17 @@ const processImage = async (img, outputPath) => {
     // resolve relative URL
     src =
       "/" +
-      path.relative("./_build_/", path.resolve(path.dirname(outputPath), src));
+      path.relative(
+        process.env._OUTPUT,
+        path.resolve(path.dirname(outputPath), src)
+      );
     if (path.sep == "\\") {
       src = src.replace(/\\/g, "/");
     }
   }
   let dimensions;
   try {
-    dimensions = await sizeOf("_build_/" + src);
+    dimensions = await sizeOf(path.join(process.env._OUTPUT, src));
   } catch (e) {
     console.warn(e.message, src);
     return;

@@ -20,7 +20,8 @@
  */
 
 const { JSDOM } = require("jsdom");
-const BASE_URL = require(process.env._DATA + "/metadata.json").url;
+const path = require("path");
+const BASE_URL = require(path.join(process.env._DATA, "metadata.json")).url;
 
 /**
  * Validate json-ld being valid JSON and add the document images to the JSON.

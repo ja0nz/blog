@@ -25,7 +25,7 @@ __Step 2:__ Configure and add the plugin:
 ```js
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(localImages, {
-    distPath: '_build_',
+    distPath: process.env._OUTPUT,
     assetPath: '/assets/img',
     selector: 'img',
     verbose: false
@@ -45,7 +45,7 @@ module.exports = function(eleventyConfig) {
 
 ## Known issues
 
-Currently, as all of the image checks are carried out asynchronously, if multiple `<img>` tags exist with the same `src` attribute, the plugin will attempt to download the file for each instance of the path. 
+Currently, as all of the image checks are carried out asynchronously, if multiple `<img>` tags exist with the same `src` attribute, the plugin will attempt to download the file for each instance of the path.
 
 This isn't as efficient as it should be, however the plugin will always save the file with the same hashed filename, so it will at least not result in duplicated files on your local storage.
 

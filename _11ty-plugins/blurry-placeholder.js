@@ -24,6 +24,7 @@
 
 const { promisify } = require("util");
 const sharp = require("sharp");
+const path = require("path");
 const sizeOf = promisify(require("image-size"));
 const DatauriParser = require("datauri/parser");
 const parser = new DatauriParser();
@@ -92,7 +93,7 @@ function getBitmapDimensions_(imgWidth, imgHeight) {
 }
 
 module.exports = async function (src) {
-  const filename = "_build_/" + src;
+  const filename = path.join(process.env._OUTPUT, src);
   const cachedName = filename + ".blurred";
   if (await exists(cachedName)) {
     return readFile(cachedName, {
