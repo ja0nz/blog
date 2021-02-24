@@ -4,12 +4,12 @@
   "license": "MIT",
   "description": "A starter repository for a blog web site using the Eleventy static site generator.",
   "scripts": {
-    "build": "npm run js-build && eleventy && npm run test",
-    "start": "concurrently \"eleventy --serve\" \"npm run js-build-watch\" \"npm run test-watch\"",
+    "build": "yarn js-build && eleventy && yarn test",
+    "start": "concurrently \"eleventy --serve\" \"yarn js-build-watch\" \"yarn test-watch\"",
     "serve": "eleventy --serve",
-    "js-build": "esbuild src/main.js --outfile=js/min.js --format=iife --minify --bundle --sourcemap",
+    "js-build": "node build.js",
     "js-build-watch": "yarn js-build --watch",
-    "debug": "DEBUG=* eleventy && npm run test",
+    "debug": "DEBUG=* eleventy && yarn test",
     "test": "mocha test/test*.js",
     "test-watch": "mocha test/test*.js --watch"
   },
