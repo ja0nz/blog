@@ -54,7 +54,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // Custom: eleventy-plugin-local-images
 const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
-const GA_ID = require("./_data/metadata.json").googleAnalyticsId;
+const GA_ID = require(process.env._DATA + "/metadata.json").googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
   /**
@@ -194,7 +194,7 @@ module.exports = function (eleventyConfig) {
   // We need to copy cached.js only if GA is used
   eleventyConfig.addPassthroughCopy(GA_ID ? "js" : "js/*[!cached].*");
   eleventyConfig.addPassthroughCopy("fonts");
-  eleventyConfig.addPassthroughCopy("_headers");
+  eleventyConfig.addPassthroughCopy(process.env._INPUT + "/_headers");
 
   // We need to rebuild upon JS change to update the CSP.
   eleventyConfig.addWatchTarget("./js/");
@@ -252,10 +252,9 @@ module.exports = function (eleventyConfig) {
 
     // These are all optional, defaults are shown:
     dir: {
-      input: ".",
+      input: "_11ty",
       includes: "_includes",
       data: "_data",
-      // Warning hardcoded throughout repo. Find and replace is your friend :)
       output: "_build_",
     },
   };
