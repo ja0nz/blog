@@ -193,13 +193,23 @@ module.exports = function (eleventyConfig) {
     require(path.resolve(process.env.COLLECTION, "getTagList"))
   );
 
-  eleventyConfig.addPassthroughCopy("img");
-  //eleventyConfig.addPassthroughCopy("css");
-  // We need to copy cached.js only if GA is used
-  eleventyConfig.addPassthroughCopy(GA_ID ? "js" : "js/*[!cached].*");
-  eleventyConfig.addPassthroughCopy("fonts");
+  /**
+   * Passthrough src -> _build_
+   */
+  eleventyConfig.addPassthroughCopy({
+    [path.resolve(process.env.SRC, "img")]: "img",
+  });
+  // We need to copy cached.js/web-vitals.js only if GA is used
+  eleventyConfig.addPassthroughCopy({
+    [path.resolve(process.env.SRC, GA_ID ? "js" : "js/*[!cached].*")]: "js",
+  });
+
+  //eleventyConfig.addPassthroughCopy(GA_ID ? "js" : "js/*[!cached].*");
+  eleventyConfig.addPassthroughCopy({
+    [path.resolve(process.env.SRC, "fonts")]: "fonts",
+  });
   // Netlify headers
-  eleventyConfig.addPassthroughCopy("_headers");
+  eleventyConfig.addPassthroughCopy({ "netlify/_headers": "_headers" });
 
   // We need to rebuild upon JS change to update the CSP.
   eleventyConfig.addWatchTarget("./js/");

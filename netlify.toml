@@ -1,13 +1,14 @@
 [build]
   publish = "_build_"
   # Allows overriding metadata.json via env var
-  command = "[ \"$METADATA_JSON\" ] && echo $METADATA_JSON > _11ty/_data/metadata.json; yarn build"
+  command = "[ \"$METADATA_JSON\" ] && echo $METADATA_JSON > _11ty-input/_data/metadata.json; yarn build"
 
 [build.environment]
-  INPUT = "_11ty"
+  INPUT = "_11ty-input"
   INCLUDES = "_11ty/_includes"
   DATA = "_11ty/_data"
   OUTPUT = "_build_"
+  SRC = "src"
   PLUGINS = "_11ty-plugins"
   COLLECTION = "_11ty-collection"
 
