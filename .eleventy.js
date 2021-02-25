@@ -90,7 +90,7 @@ module.exports = function (eleventyConfig) {
    * Internal Plugins
    */
   const addPlugin = (name) =>
-    eleventyConfig.addPlugin(require(path.join(process.env.PLUGINS, name)));
+    eleventyConfig.addPlugin(require(path.resolve(process.env.PLUGINS, name)));
   // Create and insert a image srcset on each image
   addPlugin("img-dim.js");
   // JSON linked data parser (used in each post to add schema)
@@ -190,7 +190,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection(
     "tagList",
-    require(path.join(process.env.COLLECTION, "getTagList"))
+    require(path.resolve(process.env.COLLECTION, "getTagList"))
   );
 
   eleventyConfig.addPassthroughCopy("img");
@@ -226,7 +226,7 @@ module.exports = function (eleventyConfig) {
     callbacks: {
       ready: function (err, browserSync) {
         const content_404 = fs.readFileSync(
-          path.join(process.env.OUTPUT, "404.html")
+          path.resolve(process.env.OUTPUT, "404.html")
         );
 
         browserSync.addMiddleware("*", (req, res) => {
