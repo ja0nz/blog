@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 #cp $OUTPUT/img/remote/* img/remote/
 cp -r $OUTPUT/img/* img/
