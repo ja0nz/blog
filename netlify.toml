@@ -3,6 +3,15 @@
   # Allows overriding metadata.json via env var
   command = "[ \"$METADATA_JSON\" ] && echo $METADATA_JSON > _11ty/_data/metadata.json; npm run build"
 
+[build.environment]
+  _ROOT = "."
+  _INPUT = "$_ROOT/_11ty"
+  _INCLUDES = "$_INPUT/_includes"
+  _DATA = "$_INPUT/_data"
+  _OUTPUT = "$_ROOT/_build_"
+  _PLUGINS = "$_ROOT/_11ty-plugins"
+  _COLLECTION = "$_ROOT/_11ty-collection"
+
 [[plugins]]
   package = "@netlify/plugin-functions-install-core"
 
