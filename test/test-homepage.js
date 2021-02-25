@@ -7,7 +7,7 @@ const existsSync = require("fs").existsSync;
 
 describe("check build output for homepage", () => {
   describe("homepage", () => {
-    const FILENAME = path.join(process.env.OUTPUT, "index.html");
+    const FILENAME = path.resolve(process.env.OUTPUT, "index.html");
 
     if (!existsSync(FILENAME)) {
       it("WARNING skipping tests because FILENAME does not exist", () => {});
