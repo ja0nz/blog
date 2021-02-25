@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 
+git diff --quiet || echo '>> Pending changes - first and clean working directory <<'
+git diff --quiet || exit 1
+
 #cp $OUTPUT/img/remote/* img/remote/
 cp -r $OUTPUT/img/* img/
-git status
-git add img/
-git commit -m "Persist images"
+if [[ $(git diff --stat) != '' ]]; then
+  git add img/
+  git commit -m "Persist images"
+fi
