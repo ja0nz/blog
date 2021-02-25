@@ -55,7 +55,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // Custom: eleventy-plugin-local-images
 const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
-const GA_ID = require(path.join(process.env.DATA, "metadata.json"))
+const GA_ID = require(path.resolve(process.env.DATA, "metadata.json"))
   .googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
