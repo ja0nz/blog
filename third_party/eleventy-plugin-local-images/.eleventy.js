@@ -4,7 +4,7 @@ const { JSDOM } = require("jsdom");
 const fetch = require("node-fetch");
 const sh = require("shorthash");
 const fileType = require("file-type");
-const metadata = require(path.join(process.env.DATA, "metadata.json"));
+const metadata = require(path.resolve(process.env.DATA, "metadata.json"));
 
 let config = {
   distPath: process.env.OUTPUT,
