@@ -5,8 +5,8 @@
 
 [build.environment]
   INPUT = "_11ty-input"
-  INCLUDES = "_11ty/_includes"
-  DATA = "_11ty/_data"
+  INCLUDES = "_11ty-input/_includes"
+  DATA = "_11ty-input/_data"
   OUTPUT = "_build_"
   SRC = "src"
   PLUGINS = "_11ty-plugins"
