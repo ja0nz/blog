@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 const esbuild = require("esbuild");
-const path = require("path");
 const args = process.argv.slice(2);
 
 esbuild
   .build({
-    entryPoints: [path.join(process.env.ROOT, "src/main.js")],
-    outfile: path.join(process.env.ROOT, "js/min.js"),
+    entryPoints: ["src/main.js"],
+    outfile: "js/min.js",
     bundle: true,
     sourcemap: true,
     minify: true,

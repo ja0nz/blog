@@ -1,7 +1,7 @@
 {
-  "title": "Title of the website. Update me.",
-  "url": "https://update-me.com",
-  "domain": "update-me.com",
+  "title": "Ja0nz Blog",
+  "url": "https://ja.nz",
+  "domain": "ja.nz",
   "description": "Description of the website. Update me.",
   "genre": "Insert a schema.org genre",
   "googleAnalyticsId": "GA ID. Update me",
@@ -10,11 +10,11 @@
     "subtitle": "Subtitle. Update me.",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://update-me.com"
+    "id": "https://ja.nz"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://update-me.com/feed/feed.json"
+    "url": "https://ja.nz/feed/feed.json"
   },
   "author": {
     "name": "Author Name. Update me.",

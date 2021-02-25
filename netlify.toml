@@ -1,16 +1,15 @@
 [build]
   publish = "_build_"
   # Allows overriding metadata.json via env var
-  command = "[ \"$METADATA_JSON\" ] && echo $METADATA_JSON > _11ty/_data/metadata.json; npm run build"
+  command = "[ \"$METADATA_JSON\" ] && echo $METADATA_JSON > _11ty/_data/metadata.json; yarn build"
 
 [build.environment]
-  ROOT = "."
-  INPUT = "$ROOT/_11ty"
-  INCLUDES = "$INPUT/_includes"
-  DATA = "$INPUT/_data"
-  OUTPUT = "$ROOT/_build_"
-  PLUGINS = "$ROOT/_11ty-plugins"
-  COLLECTION = "$ROOT/_11ty-collection"
+  INPUT = "_11ty"
+  INCLUDES = "_11ty/_includes"
+  DATA = "_11ty/_data"
+  OUTPUT = "_build_"
+  PLUGINS = "_11ty-plugins"
+  COLLECTION = "_11ty-collection"
 
 [[plugins]]
   package = "@netlify/plugin-functions-install-core"
