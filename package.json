@@ -9,6 +9,8 @@
     "serve": "eleventy --serve",
     "js-build": "./scripts/js-makefile",
     "js-build-watch": "yarn js-build --watch",
+    "persist-images": "./scripts/persistimages",
+    "generate-md": "./scripts/docs-generate",
     "debug": "DEBUG=* eleventy && yarn test",
     "test": "mocha test/test*.js",
     "test-watch": "mocha test/test*.js --watch"
