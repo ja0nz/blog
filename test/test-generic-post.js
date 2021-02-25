@@ -4,8 +4,8 @@ const path = require("path");
 const { JSDOM } = require("jsdom");
 const readFileSync = require("fs").readFileSync;
 const existsSync = require("fs").existsSync;
-const metadata = require(path.join(process.env._DATA, "metadata.json"));
-const GA_ID = require(path.join(process.env._DATA, "googleanalytics.js"))();
+const metadata = require(path.join(process.env.DATA, "metadata.json"));
+const GA_ID = require(path.join(process.env.DATA, "googleanalytics.js"))();
 
 /**
  * These tests kind of suck and they are kind of useful.
@@ -17,7 +17,7 @@ const GA_ID = require(path.join(process.env._DATA, "googleanalytics.js"))();
 describe("check build output for a generic post", () => {
   describe("sample post", () => {
     const POST_FILENAME = path.join(
-      process.env._OUTPUT,
+      process.env.OUTPUT,
       "posts/firstpost/index.html"
     );
     const URL = metadata.url;

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#cp $_OUTPUT/img/remote/* $_ROOT/img/remote/
-cp -r $_OUTPUT/img/* $_ROOT/img/
+#cp $OUTPUT/img/remote/* $ROOT/img/remote/
+cp -r $OUTPUT/img/* $ROOT/img/
 git status
-git add $_ROOT/img/
+git add $ROOT/img/
 git commit -m "Persist images"

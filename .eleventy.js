@@ -55,7 +55,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // Custom: eleventy-plugin-local-images
 const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
-const GA_ID = require(path.join(process.env._DATA, "metadata.json"))
+const GA_ID = require(path.join(process.env.DATA, "metadata.json"))
   .googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
@@ -79,7 +79,7 @@ module.exports = function (eleventyConfig) {
 
   // Caching third party images locally
   eleventyConfig.addPlugin(localImages, {
-    distPath: process.env._OUTPUT,
+    distPath: process.env.OUTPUT,
     assetPath: "/img/remote",
     selector:
       "img,amp-img,amp-video,meta[property='og:image'],meta[name='twitter:image'],amp-story",
@@ -90,7 +90,7 @@ module.exports = function (eleventyConfig) {
    * Internal Plugins
    */
   const addPlugin = (name) =>
-    eleventyConfig.addPlugin(require(path.join(process.env._PLUGINS, name)));
+    eleventyConfig.addPlugin(require(path.join(process.env.PLUGINS, name)));
   // Create and insert a image srcset on each image
   addPlugin("img-dim.js");
   // JSON linked data parser (used in each post to add schema)
@@ -105,7 +105,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addNunjucksAsyncFilter(
     "addHash",
     function (absolutePath, callback) {
-      readFile(path.join(process.env._OUTPUT, absolutePath), {
+      readFile(path.join(process.env.OUTPUT, absolutePath), {
         encoding: "utf-8",
       })
         .then((content) => {
@@ -190,7 +190,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection(
     "tagList",
-    require(path.join(process.env._COLLECTION, "getTagList"))
+    require(path.join(process.env.COLLECTION, "getTagList"))
   );
 
   eleventyConfig.addPassthroughCopy("img");
@@ -226,7 +226,7 @@ module.exports = function (eleventyConfig) {
     callbacks: {
       ready: function (err, browserSync) {
         const content_404 = fs.readFileSync(
-          path.join(process.env._OUTPUT, "404.html")
+          path.join(process.env.OUTPUT, "404.html")
         );
 
         browserSync.addMiddleware("*", (req, res) => {
@@ -259,10 +259,10 @@ module.exports = function (eleventyConfig) {
 
     // These are all optional, defaults are shown:
     dir: {
-      input: path.basename(process.env._INPUT),
-      includes: path.basename(process.env._INCLUDES),
-      data: path.basename(process.env._DATA),
-      output: path.basename(process.env._OUTPUT),
+      input: path.basename(process.env.INPUT),
+      includes: path.basename(process.env.INCLUDES),
+      data: path.basename(process.env.DATA),
+      output: path.basename(process.env.OUTPUT),
     },
   };
 };

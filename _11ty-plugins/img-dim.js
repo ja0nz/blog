@@ -43,7 +43,7 @@ const processImage = async (img, outputPath) => {
     src =
       "/" +
       path.relative(
-        process.env._OUTPUT,
+        process.env.OUTPUT,
         path.resolve(path.dirname(outputPath), src)
       );
     if (path.sep == "\\") {
@@ -52,7 +52,7 @@ const processImage = async (img, outputPath) => {
   }
   let dimensions;
   try {
-    dimensions = await sizeOf(path.join(process.env._OUTPUT, src));
+    dimensions = await sizeOf(path.join(process.env.OUTPUT, src));
   } catch (e) {
     console.warn(e.message, src);
     return;

@@ -25,7 +25,7 @@ __Step 2:__ Configure and add the plugin:
 ```js
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(localImages, {
-    distPath: process.env._OUTPUT,
+    distPath: process.env.OUTPUT,
     assetPath: '/assets/img',
     selector: 'img',
     verbose: false

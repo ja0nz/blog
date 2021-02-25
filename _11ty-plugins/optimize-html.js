@@ -23,7 +23,7 @@ const minify = require("html-minifier").minify;
 const AmpOptimizer = require("@ampproject/toolbox-optimizer");
 const ampOptimizer = AmpOptimizer.create({
   blurredPlaceholders: true,
-  imageBasePath: process.env._OUTPUT,
+  imageBasePath: process.env.OUTPUT,
   //verbose: true,
 });
 const PurgeCSS = require("purgecss").PurgeCSS;
