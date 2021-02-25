@@ -8,6 +8,6 @@ pkgs.mkShell {
     pkgs.yarn
 
     # keep this line if you use bash
-    # pkgs.bashInteractive
+    pkgs.bashInteractive
   ];
 }
