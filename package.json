@@ -7,7 +7,7 @@
     "build": "yarn js-build && eleventy && yarn test",
     "start": "concurrently \"eleventy --serve\" \"yarn js-build-watch\" \"yarn test-watch\"",
     "serve": "eleventy --serve",
-    "js-build": "node build.js",
+    "js-build": "./scripts/js-makefile",
     "js-build-watch": "yarn js-build --watch",
     "debug": "DEBUG=* eleventy && yarn test",
     "test": "mocha test/test*.js",

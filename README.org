@@ -1,0 +1,22 @@
+#+TITLE: Ja▲nz Blog
+* Ja▲nz Blog
+
+- [[https://www.11ty.dev/][Eleventy static site generator]]
+- [[https://github.com/google/eleventy-high-performance-blog][Eleventy high performance blog]]
+
+** Build tools
+- [[https://github.com/shajra/nix-project][Nix-project scaffolding]]
+- direnv
+- lorri
+
+** Scripts
+- =docs-generate=
+- =dependencies-upgrade=
+
+Both are typically run with no arguments. =docs-generate= will generate
+Markdown files from Emacs Org-mode files. =dependencies-upgrade= as its name
+implies, updates the dependencies.
+
+=docs-generate= is configured to execute source blocks. The result will be
+written to the Org-mode files in-place, as well as included in the exported
+Markdown.
