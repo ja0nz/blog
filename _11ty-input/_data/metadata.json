@@ -4,7 +4,7 @@
   "domain": "ja.nz",
   "description": "Description of the website. Update me.",
   "genre": "Insert a schema.org genre",
-  "googleAnalyticsId": "GA ID. Update me",
+  "googleAnalyticsId": false,
   "sendWebVitals": false,
   "feed": {
     "subtitle": "Subtitle. Update me.",
