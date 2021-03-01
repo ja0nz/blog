@@ -213,12 +213,26 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
 */
 @font-face {
-  font-family: "Inter UI";
+  font-family: "Oak Bold";
   font-style: normal;
   font-weight: 100;
-  src: url("/fonts/Inter-Thin.woff2") format("woff2"),
-    url("/fonts/Inter-Thin.woff") format("woff");
+  src: url("/fonts/oak-bold.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: "Oak Light";
+  font-style: normal;
+  font-weight: 100;
+  src: url("/fonts/oak-light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Plantin Light";
+  font-style: normal;
+  font-weight: 100;
+  src: url("/fonts/plantin-light.woff2") format("woff2");
+}
+
 @font-face {
   font-family: "Inter UI";
   font-style: italic;
@@ -859,7 +873,7 @@ html {
   html {
     font-family: Inter UI var alt, sans-serif;
     --font-family: Inter UI var alt, sans-serif;
-  }
+ }
 }
 form {
   padding: 1.5em 1.5em 0;

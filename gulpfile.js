@@ -1,7 +1,7 @@
 const { watch } = require("gulp");
 
 // Pull in each task
-const sass = require("./scripts/sass.js");
+const sass = require("./scripts/sass-makefile");
 
 // Set each directory and contents that we want to watch and
 // assign the relevant task. `ignoreInitial` set to true will

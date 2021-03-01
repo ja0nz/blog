@@ -1,8 +1,5 @@
 _build_/
 node_modules/
 .DS_Store
-js/min.js
-js/min.js.map
 .vscode/
 .netlify/
-export

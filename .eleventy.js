@@ -212,12 +212,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "netlify/_headers": "_headers" });
 
   // We need to rebuild upon JS change to update the CSP.
-  eleventyConfig.addWatchTarget("./js/");
+  eleventyConfig.addWatchTarget(path.resolve(process.env.SRC, "js"));
   // We need to rebuild on CSS change to inline it.
-  eleventyConfig.addWatchTarget("./css/");
-  // Unfortunately this means .eleventyignore needs to be maintained redundantly.
-  // But without this the JS build artefacts doesn't trigger a build.
-  eleventyConfig.setUseGitIgnore(false);
+  eleventyConfig.addWatchTarget(path.resolve(process.env.SRC, "css"));
+  eleventyConfig.addPassthroughCopy({
+    [path.resolve(process.env.SRC, "css")]: "css",
+  });
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({
