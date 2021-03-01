@@ -68,6 +68,7 @@
     "querystring": "^0.2.0",
     "sass": "^1.32.8",
     "sharp": "^0.27.2",
+    "tiny-glob": "^0.2.8",
     "twitter": "^1.7.1"
   }
 }

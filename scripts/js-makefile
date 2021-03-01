@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 
-const esbuild = require("esbuild");
+const { build } = require("esbuild");
+const glob = require("tiny-glob");
 const path = require("path");
 const args = process.argv.slice(2);
 
-esbuild
-  .build({
-    entryPoints: [path.resolve(process.env.SRC, "main.js")],
-    outfile: path.resolve(process.env.OUTPUT, "js/min.js"),
-    bundle: true,
+(async () => {
+  let entryPoints = await glob(
+    path.resolve(process.env.SRC, "js", "*.{js,mjs}")
+  );
+  build({
+    entryPoints,
+    outdir: path.resolve(process.env.OUTPUT, "js"),
+    //    bundle: true,
     sourcemap: true,
     minify: true,
-    format: "iife",
+    format: "esm",
     watch: args.includes("--watch"),
-  })
-  .catch((e) => console.error(e.message));
+  }).catch((e) => console.error(e.message));
+})();

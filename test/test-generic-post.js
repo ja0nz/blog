@@ -65,34 +65,12 @@ describe("check build output for a generic post", () => {
       expect(css).to.not.match(/test-dead-code-elimination-sentinel/);
     });
 
-    it("should have script elements", () => {
-      const scripts = doc.querySelectorAll("script[src]");
-      let has_ga_id = GA_ID ? 1 : 0;
-      expect(scripts).to.have.length(has_ga_id + 1); // NOTE: update this when adding more <script>
-      expect(scripts[0].getAttribute("src")).to.match(
-        /^\/js\/min\.js\?hash=\w+/
-      );
-    });
-
-    it("should have GA a setup", () => {
-      if (!GA_ID) {
-        return;
-      }
-      const scripts = doc.querySelectorAll("script[src]");
-      expect(scripts[1].getAttribute("src")).to.match(
-        /^\/js\/cached\.js\?hash=\w+/
-      );
-      const noscript = doc.querySelectorAll("noscript");
-      expect(noscript.length).to.be.greaterThan(0);
-      let count = 0;
-      for (let n of noscript) {
-        if (n.textContent.includes("/.netlify/functions/ga")) {
-          count++;
-          expect(n.textContent).to.contain(GA_ID);
-        }
-      }
-      expect(count).to.equal(1);
-    });
+    // it("should have script elements", () => {
+    //   const scripts = doc.querySelectorAll("script[src]");
+    //   console.log(scripts);
+    //   let has_ga_id = GA_ID ? 1 : 0;
+    //   expect(scripts).to.have.length(has_ga_id + 1); // NOTE: update this when adding more <script>
+    // });
 
     it("should have a good CSP", () => {
       const csp = select(
